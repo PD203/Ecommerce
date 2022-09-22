@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500&family=Patrick+Hand&family=Poppins:wght@200&family=Roboto:wght@300;400;500&family=Urbanist:ital,wght@0,100;0,300;0,400;0,600;0,700;1,600&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  font-weight: 100 !important;
+  font-family: 'Hind', sans-serif;;
+}
+
+
+
+html{
+  scroll-behavior: smooth;
+  /* scroll-snap-align: start; */
+  /* scroll-snap-type: Y mandatory; */
+  position: relative;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.greenColor {
+  color: green !important;
+}
+.redColor {
+  color: red !important;
+}
+
+/* 
+body{
+  background: #040714 !important;
+  color: #fff;
+} */
+
+.button {
+  color: #fff;
+  padding: 0.5rem 3rem;
+  font-size: 17px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 2vh;
+  display: inline-block;
+  text-transform: uppercase;
+  background-color: #0063e5;
+  border: 1px solid transparent;
+}
+
+.button:hover{
+  background: #0099ff;
+}
+
+@media screen and (min-width: 550px) and (max-width: 767px){
+  .button{
+    padding: 0.5rem 2rem;
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 550px){
+  .button{
+    padding: 0.5rem 1.7rem;
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 280px) and (max-width: 375px){
+  .button{
+    padding: 0.5rem 1.5rem;
+    font-size: 10px;
+  }
+}
+
+/* CheckoutSteps */
+
+.MuiStepConnector-line {
+  display: none !important;
+}
+
+.MuiStepConnector-root {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.349);
+}
+
+.MuiStepConnector-active,
+.MuiStepConnector-completed {
+  background-color: rgb(199, 131, 67);
+}
