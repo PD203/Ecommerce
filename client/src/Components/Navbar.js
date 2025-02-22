@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,102 +10,98 @@ import dashboard from "../Components/Images/dashboard.png";
 import menuImg from "../Components/Images/menu.png";
 import crossImg from "../Components/Images/cross.png";
 
-function openNav() {
-  document.getElementById("sidenav").style.width = "250px";
-  // document.getElementById("root").style.backgroundColor = "#000000b2";
-}
-
-function closeNav() {
-  document.getElementById("sidenav").style.width = "0";
-}
-
 function Navbar() {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+  
+  // State for the side navigation width
+  const [navWidth, setNavWidth] = useState("0");
+
+  // Function to open the side nav
+  const openNav = () => setNavWidth("250px");
+
+  // Function to close the side nav
+  const closeNav = () => setNavWidth("0");
 
   return (
-    <>
-      <Nav>
-        {/* Mobile NavBar */}
-        <Menu>
-          <div id="sidenav" className="sidenav">
-            <img
-              src={crossImg}
-              alt=""
-              className="close-icon"
-              onClick={closeNav}
-            />
-            <li>
-              <Link to="/" className="nav-link" onClick={closeNav}>
-                <span>Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/products" className="nav-link" onClick={closeNav}>
-                <span>Product</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/category" className="nav-link" onClick={closeNav}>
-                <span>Category</span>
-              </Link>
-            </li>
-          </div>
-          <img src={menuImg} alt="" className="nav-icon" onClick={openNav} />
-        </Menu>
-
-        {/* Brand */}
-
-        <NavBrand>
-          <h2>cosmatics</h2>
-        </NavBrand>
-
-        {/* Desktop NavBar */}
-
-        <MenuLinks>
+    <Nav>
+      {/* Mobile NavBar */}
+      <Menu>
+        <div id="sidenav" className="sidenav" style={{ width: navWidth }}>
+          <img
+            src={crossImg}
+            alt="close"
+            className="close-icon"
+            onClick={closeNav}
+          />
           <li>
-            <Link to="/" className="nav-link">
+            <Link to="/" className="nav-link" onClick={closeNav}>
               <span>Home</span>
             </Link>
           </li>
           <li>
-            <Link to="/products" className="nav-link">
+            <Link to="/products" className="nav-link" onClick={closeNav}>
               <span>Product</span>
             </Link>
           </li>
           <li>
-            <Link to="/category" className="nav-link">
+            <Link to="/category" className="nav-link" onClick={closeNav}>
               <span>Category</span>
             </Link>
           </li>
-        </MenuLinks>
+        </div>
+        <img src={menuImg} alt="menu" className="nav-icon" onClick={openNav} />
+      </Menu>
 
-        {/* Right side */}
-        <Right>
-          <Search>
-            {/* <Link to="/admin/dashboard">
-              <img src={dashboard} alt="" />
-            </Link> */}
-          </Search>
-          <Account>
-            <Link to="/login">
-              <img src={userImg} alt="" />
-            </Link>
-          </Account>
-          <Wishlist>
-            <Link to="/wishlist">
-              <img src={wishlistImg} alt="" />
-            </Link>
-          </Wishlist>
-          <Bag>
-            <Link to="/bag">
-              <img src={bagImg} alt="" />
-            </Link>
-            <span>{cartItems.length}</span>
-          </Bag>
-        </Right>
-      </Nav>
-    </>
+      {/* Brand */}
+      <NavBrand>
+        <h2>cosmatics</h2>
+      </NavBrand>
+
+      {/* Desktop NavBar */}
+      <MenuLinks>
+        <li>
+          <Link to="/" className="nav-link">
+            <span>Home</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/products" className="nav-link">
+            <span>Product</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/category" className="nav-link">
+            <span>Category</span>
+          </Link>
+        </li>
+      </MenuLinks>
+
+      {/* Right side */}
+      <Right>
+        <Search>
+          {/* <Link to="/admin/dashboard">
+            <img src={dashboard} alt="" />
+          </Link> */}
+        </Search>
+        <Account>
+          <Link to="/login">
+            <img src={userImg} alt="user" />
+          </Link>
+        </Account>
+        <Wishlist>
+          <Link to="/wishlist">
+            <img src={wishlistImg} alt="wishlist" />
+          </Link>
+        </Wishlist>
+        <Bag>
+          <Link to="/bag">
+            <img src={bagImg} alt="bag" />
+          </Link>
+          <span>{cartItems.length}</span>
+        </Bag>
+      </Right>
+    </Nav>
   );
 }
 
@@ -118,6 +115,7 @@ const Nav = styled.nav`
   flex-direction: row;
   padding: 0.3rem 1rem;
 `;
+
 const NavBrand = styled.div`
   width: 101px;
   height: auto;
@@ -129,6 +127,7 @@ const NavBrand = styled.div`
     object-fit: fill;
   }
 `;
+
 const MenuLinks = styled.div`
   @media screen and (min-width: 280px) and (max-width: 767px) {
     display: none;
@@ -185,6 +184,7 @@ const MenuLinks = styled.div`
     }
   }
 `;
+
 const Right = styled.div`
   display: flex;
   padding: 0.5rem;
@@ -193,6 +193,7 @@ const Right = styled.div`
     padding: 0;
   }
 `;
+
 const Search = styled.div`
   padding: 0 0.5rem;
 
@@ -200,6 +201,7 @@ const Search = styled.div`
     padding: 0 0.2rem;
   }
 `;
+
 const Account = styled.div`
   padding: 0 0.5rem;
 
@@ -208,6 +210,7 @@ const Account = styled.div`
     /* display: none; */
   }
 `;
+
 const Wishlist = styled.div`
   padding: 0 0.5rem;
 
@@ -215,6 +218,7 @@ const Wishlist = styled.div`
     padding: 0 0.2rem;
   }
 `;
+
 const Bag = styled.div`
   padding: 0 0.5rem;
 
